@@ -33,7 +33,8 @@
 		   <div class="profile-main-flex">
 			   <!-- Profile picture container -->
 			   <div class="profile-pic-container">
-				   <img src="Pictures/Self#1.jpg" alt="Profile picture of Ronald Liu" class="profile-pic">
+				   <!-- use percent-encoded '#' so browser requests the file -->
+				   <img id="profile-pic" src="Pictures/Self%231.jpg" alt="Profile picture of Ronald Liu" class="profile-pic">
 			   </div>
 
 			   <!-- Profile text: heading, intro and social icons -->
@@ -171,7 +172,15 @@
 		   setTheme(darkMode === 'true');
 	   };
 	   </script>
+
+	  <!-- Small debug helper: logs profile image load status -->
+	  <script>
+	  (function(){
+		  const img = document.getElementById('profile-pic');
+		  if (!img) return;
+		  img.addEventListener('load', () => console.info('Profile image loaded:', img.src));
+		  img.addEventListener('error', () => console.error('Profile image failed to load:', img.src));
+	  })();
+	  </script>
 </body>
 </html>
-
-
